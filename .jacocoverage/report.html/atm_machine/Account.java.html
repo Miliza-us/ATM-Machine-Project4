@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ATM_Machine&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">atm_machine</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package atm_machine;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+<span class="fc" id="L11">public class Account {</span>
+<span class="fc" id="L12">    Scanner input = new Scanner(System.in);</span>
+<span class="fc" id="L13">    DecimalFormat moneyFormat = new DecimalFormat(&quot;'$'###,##0.00&quot;);</span>
+
+    private int customerNumber;
+    private int pinNumber;
+<span class="fc" id="L17">    private double checkingBalance = 1000;</span>
+<span class="fc" id="L18">    private double savingBalance = 1000;</span>
+
+    //Set customer number
+    public int setCustomerNumber(int customerNumber){
+<span class="fc" id="L22">        this.customerNumber = customerNumber;</span>
+<span class="fc" id="L23">        return customerNumber;</span>
+    }
+
+    //Get customer number
+    public int getCustomerNumber(){
+<span class="fc" id="L28">        return customerNumber;</span>
+    }
+
+    //Set pin number
+    public int setPinNumber(int pinNumber){
+<span class="fc" id="L33">        this.pinNumber = pinNumber;</span>
+<span class="fc" id="L34">        return pinNumber;</span>
+    }
+
+    //Get pin number
+    public int getPinNumber(){
+<span class="fc" id="L39">        return pinNumber;</span>
+    }
+
+    //Get checking account balance
+    public double getCheckingBalance(){
+<span class="fc" id="L44">        return checkingBalance;</span>
+    }
+
+    //Get saving account balance
+    public double getSavingBalance(){
+<span class="fc" id="L49">        return savingBalance;</span>
+    }
+
+    //Calculating checking account withdrawal
+    public double calcCheckingWithdraw(double amount){
+<span class="fc" id="L54">        checkingBalance = (checkingBalance - amount);</span>
+<span class="fc" id="L55">        return checkingBalance;</span>
+    }
+
+    //Calculating saving account withdrawal
+    public double calcSavingWithdraw(double amount){
+<span class="fc" id="L60">        savingBalance = (savingBalance - amount);</span>
+<span class="fc" id="L61">        return savingBalance;</span>
+    }
+
+    //Calculating checking account deposit
+    public double calcCheckingDeposit(double amount){
+<span class="fc" id="L66">        checkingBalance = (checkingBalance + amount);</span>
+<span class="fc" id="L67">        return checkingBalance;</span>
+    }
+
+    //Calculating saving account deposit
+    public double calcSavingDeposit(double amount){
+<span class="fc" id="L72">        savingBalance = (savingBalance + amount);</span>
+<span class="fc" id="L73">        return savingBalance;</span>
+    }
+
+    //Customer checking account withdraw input
+    public void getCheckingWithdrawInput(){
+<span class="fc" id="L78">        System.out.println(&quot;Checking Account Balance: &quot; + moneyFormat.format(checkingBalance));</span>
+<span class="fc" id="L79">        System.out.print(&quot;Amount you want to withdraw from Checking Account: &quot;);</span>
+<span class="nc" id="L80">        double amount = input.nextDouble();</span>
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if((checkingBalance - amount) &gt;= 0){</span>
+<span class="nc" id="L83">            calcCheckingWithdraw(amount);</span>
+<span class="nc" id="L84">            System.out.println(&quot;New Checking Account balance: &quot; + moneyFormat.format(checkingBalance));</span>
+        } else {
+<span class="nc" id="L86">            System.out.println(&quot;Balance cannot be negative.&quot; + &quot;\n&quot;);</span>
+        }
+<span class="nc" id="L88">    }</span>
+
+    //Customer saving account withdraw input
+    public void getSavingWithdrawInput(){
+<span class="fc" id="L92">        System.out.println(&quot;Saving Account Balance: &quot; + moneyFormat.format(savingBalance));</span>
+<span class="fc" id="L93">        System.out.print(&quot;Amount you want to withdraw from Saving Account: &quot;);</span>
+<span class="nc" id="L94">        double amount = input.nextDouble();</span>
+
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        if((savingBalance - amount) &gt;= 0){</span>
+<span class="nc" id="L97">            calcSavingWithdraw(amount);</span>
+<span class="nc" id="L98">            System.out.println(&quot;New Saving Account balance: &quot; + savingBalance + &quot;\n&quot;);</span>
+        } else {
+<span class="nc" id="L100">            System.out.println(&quot;Balance cannot be negative.&quot; + &quot;\n&quot;);</span>
+        }
+<span class="nc" id="L102">    }</span>
+
+    //Customer checking account deposit input
+    public void getCheckingDepositInput(){
+<span class="fc" id="L106">        System.out.println(&quot;Checking Account Balance: &quot; + moneyFormat.format(checkingBalance));</span>
+<span class="fc" id="L107">        System.out.print(&quot;Amount you want to deposit from Checking Account: &quot;);</span>
+<span class="nc" id="L108">        double amount = input.nextDouble();</span>
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if((checkingBalance + amount) &gt;= 0){</span>
+<span class="nc" id="L111">            calcCheckingDeposit(amount);</span>
+<span class="nc" id="L112">            System.out.println(&quot;New Checking Account balance: &quot; + moneyFormat.format(checkingBalance));</span>
+        } else {
+<span class="nc" id="L114">            System.out.println(&quot;Balance cannot be negative.&quot; + &quot;\n&quot;);</span>
+        }
+<span class="nc" id="L116">    }</span>
+
+    //Customer saving account deposit input
+    public void getSavingDepositInput(){
+<span class="fc" id="L120">        System.out.println(&quot;Saving Account Balance: &quot; + moneyFormat.format(savingBalance));</span>
+<span class="fc" id="L121">        System.out.print(&quot;Amount you want to deposit from Saving Account: &quot;);</span>
+<span class="nc" id="L122">        double amount = input.nextDouble();</span>
+
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if ((savingBalance + amount) &gt;= 0){</span>
+<span class="nc" id="L125">            calcSavingDeposit(amount);</span>
+<span class="nc" id="L126">            System.out.println(&quot;New Saving Account balance: &quot; + moneyFormat.format(savingBalance));</span>
+        } else {
+<span class="nc" id="L128">            System.out.println(&quot;Balance cannot be negative.&quot; + &quot;\n&quot;);</span>
+        }
+<span class="nc" id="L130">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
